@@ -115,7 +115,8 @@ def hsv(data, image, scored_bboxes_and_names):
     
 def saturation(data, image, scored_bboxes_and_names):
     data = cv2.cvtColor(data, cv2.COLOR_RGB2HSV)
-    r = np.random.uniform(0.95, 1.05)
+    # r = np.random.uniform(0.95, 1.05)
+    r = 1.5
     data[..., 1] = np.clip(data[..., 1] * r, 0, 255)
     data = cv2.cvtColor(data, cv2.COLOR_HSV2RGB)
     image = Image.fromarray(data, mode = "RGB")
@@ -127,7 +128,8 @@ def saturation(data, image, scored_bboxes_and_names):
 
 def hue(data, image, scored_bboxes_and_names):
     data = cv2.cvtColor(data, cv2.COLOR_RGB2HSV)
-    r = np.random.uniform(-0.05, 0.05)
+    # r = np.random.uniform(-0.05, 0.05)
+    r = 0.05
     data[..., 0] = np.mod(data[..., 0] + r * 180, 180)
     data = cv2.cvtColor(data, cv2.COLOR_HSV2RGB)
     image = Image.fromarray(data, mode = "RGB")
@@ -140,7 +142,8 @@ def hue(data, image, scored_bboxes_and_names):
 def contrast(data, image, scored_bboxes_and_names):
     
     mean = data.mean(axis=0).mean(axis=0)
-    r = np.random.uniform(0.9, 1.1)
+    # r = np.random.uniform(0.9, 1.1)
+    r = 1.5
     data = np.clip((data- mean) * r + mean, 0, 255).astype(np.uint8)
     image = Image.fromarray(data, mode = "RGB")
     
@@ -152,7 +155,8 @@ def contrast(data, image, scored_bboxes_and_names):
     
 def brightness(data, image, scored_bboxes_and_names):
     
-    r = np.random.uniform(-0.1, 0.1)
+    # r = np.random.uniform(-0.1, 0.1)
+    r = -0.1
     data = np.clip(data + r * 255, 0, 255).astype(np.uint8)
     image = Image.fromarray(data, mode = "RGB")
     
@@ -202,9 +206,9 @@ if __name__ == "__main__":
         scored_bboxes_and_names.append(corners)
        
     visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/no_augment.jpg",
-                                image=image,
-                                scored_bboxes_and_names=scored_bboxes_and_names,
-                                class_id_to_name=class_id_to_name)
+                                image=copy.deepcopy(image),
+                                scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names),
+                                class_id_to_name=copy.deepcopy(class_id_to_name))
     horizontal_flip(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
     vertical_flip(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
     hsv(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
@@ -212,4 +216,4 @@ if __name__ == "__main__":
     hue(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
     contrast(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
     brightness(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
-    # add_noise(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
+    add_noise(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
