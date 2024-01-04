@@ -44,7 +44,6 @@ def draw_detections(save_path, image, scored_bboxes_by_class_id, class_id_to_nam
   image.save(save_path)
   
 def draw_gt_detections(save_path, image, scored_bboxes_and_names, class_id_to_name):
-  print(scored_bboxes_and_names)
   # Draw all results
   context = ImageDraw.Draw(image, mode="RGBA")
   for i in range(len(scored_bboxes_and_names)):

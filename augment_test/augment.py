@@ -194,10 +194,10 @@ if __name__ == "__main__":
         x_max = int(bndbox.find("xmax").text) - 1
         y_max = int(bndbox.find("ymax").text) - 1
         corners = np.array([y_min, x_min, y_max, x_max]).astype(np.float32)
-        # ID
-        corners = np.append(corners, class_id)
         # Score
         corners = np.append(corners, 1)
+        # ID
+        corners = np.append(corners, class_id)
         
         scored_bboxes_and_names.append(corners)
        
