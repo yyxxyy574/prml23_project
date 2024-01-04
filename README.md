@@ -10,4 +10,6 @@ python -m detection.code --train --learning-rate=1e-3 --epochs=15 --backbone=res
 ```
 use `--no-augment` for disable data augment
 ## Predict
+```
 python -m detection.code --predict --load-from=vgg15_15.pth
+```
