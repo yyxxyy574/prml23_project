@@ -212,4 +212,4 @@ if __name__ == "__main__":
     hue(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
     contrast(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
     brightness(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
-    add_noise(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
+    # add_noise(data=copy.deepcopy(data), image=copy.deepcopy(image), scored_bboxes_and_names=copy.deepcopy(scored_bboxes_and_names))
