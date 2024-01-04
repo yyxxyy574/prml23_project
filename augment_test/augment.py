@@ -9,7 +9,7 @@ from skimage.util import random_noise
 import copy
 
 import sys
-sys.path.append("/home/stu7/prml23/prml23/detection/code")
+sys.path.append("/home/stu7/prml23_project/detection/code")
 import visualize
 
 class_id_to_name = {
@@ -59,7 +59,7 @@ def horizontal_flip(data, image, scored_bboxes_and_names):
         
         scored_bboxes_and_names_au.append(scored_bbox_and_name)
     
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/horizontal_flip.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/horizontal_flip.jpg",
                               image=image,
                               scored_bboxes_and_names=scored_bboxes_and_names_au,
                               class_id_to_name=class_id_to_name)
@@ -86,7 +86,7 @@ def vertical_flip(data, image, scored_bboxes_and_names):
         
         scored_bboxes_and_names_au.append(scored_bbox_and_name)
         
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/vertical_flip.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/vertical_flip.jpg",
                             image=image,
                             scored_bboxes_and_names=scored_bboxes_and_names_au,
                             class_id_to_name=class_id_to_name)
@@ -108,7 +108,7 @@ def hsv(data, image, scored_bboxes_and_names):
     data = cv2.cvtColor(data, cv2.COLOR_HSV2RGB)
     image = Image.fromarray(data, mode = "RGB")
     
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/hsv.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/hsv.jpg",
                             image=image,
                             scored_bboxes_and_names=scored_bboxes_and_names,
                             class_id_to_name=class_id_to_name)
@@ -120,7 +120,7 @@ def saturation(data, image, scored_bboxes_and_names):
     data = cv2.cvtColor(data, cv2.COLOR_HSV2RGB)
     image = Image.fromarray(data, mode = "RGB")
             
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/saturation.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/saturation.jpg",
                             image=image,
                             scored_bboxes_and_names=scored_bboxes_and_names,
                             class_id_to_name=class_id_to_name)
@@ -132,7 +132,7 @@ def hue(data, image, scored_bboxes_and_names):
     data = cv2.cvtColor(data, cv2.COLOR_HSV2RGB)
     image = Image.fromarray(data, mode = "RGB")
     
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/hue.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/hue.jpg",
                             image=image,
                             scored_bboxes_and_names=scored_bboxes_and_names,
                             class_id_to_name=class_id_to_name)
@@ -144,7 +144,7 @@ def contrast(data, image, scored_bboxes_and_names):
     data = np.clip((data- mean) * r + mean, 0, 255).astype(np.uint8)
     image = Image.fromarray(data, mode = "RGB")
     
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/contrast.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/contrast.jpg",
                             image=image,
                             scored_bboxes_and_names=scored_bboxes_and_names,
                             class_id_to_name=class_id_to_name)
@@ -156,7 +156,7 @@ def brightness(data, image, scored_bboxes_and_names):
     data = np.clip(data + r * 255, 0, 255).astype(np.uint8)
     image = Image.fromarray(data, mode = "RGB")
     
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/brightness.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/brightness.jpg",
                             image=image,
                             scored_bboxes_and_names=scored_bboxes_and_names,
                             class_id_to_name=class_id_to_name)
@@ -166,17 +166,17 @@ def add_noise(data, image, scored_bboxes_and_names):
     data = random_noise(data, mode="gaussian", seed=int(time.time()), clip=True) * 255
     image = Image.fromarray(data, mode = "RGB")
     
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/add_noise.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/add_noise.jpg",
                             image=image,
                             scored_bboxes_and_names=scored_bboxes_and_names,
                             class_id_to_name=class_id_to_name)
     
 if __name__ == "__main__":
-    data = imageio.imread("/home/stu7/prml23/prml23/augment_test/2007_000559.jpg", pilmode = "RGB")
+    data = imageio.imread("/home/stu7/prml23_project/augment_test/2007_000559.jpg", pilmode = "RGB")
     image = Image.fromarray(data, mode = "RGB")
     
     # Use the ElementTree to parse XML annotations
-    tree = ET.parse("/home/stu7/prml23/prml23/augment_test/2007_000559.xml")
+    tree = ET.parse("/home/stu7/prml23_project/augment_test/2007_000559.xml")
     root = tree.getroot()
     
     # Extract bbox and class information
@@ -201,7 +201,7 @@ if __name__ == "__main__":
         
         scored_bboxes_and_names.append(corners)
        
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23/prml23/augment_test/no_augment.jpg",
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/no_augment.jpg",
                                 image=image,
                                 scored_bboxes_and_names=scored_bboxes_and_names,
                                 class_id_to_name=class_id_to_name)
