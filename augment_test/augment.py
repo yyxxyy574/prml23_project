@@ -39,33 +39,7 @@ class_name_to_id = {class_name: class_id for (class_id, class_name) in class_id_
 
 def horizontal_flip(data, image, scored_bboxes_and_names):
     
-    original_width, original_height = image.width, image.height
-    
-    image = image.transpose(method=Image.FLIP_LEFT_RIGHT)
-    
-    scored_bboxes_and_names_au = []
-    for i in range(len(scored_bboxes_and_names)):
-        scored_bbox_and_name = scored_bboxes_and_names[i]
-        corners = scored_bbox_and_name[0: 4]
         
-        corners = np.array([
-            corners[0],
-            original_width - 1 - corners[3],
-            corners[2],
-            original_width - 1 - corners[1]
-        ])
-        
-        scored_bbox_and_name[0: 4] = corners
-        
-        scored_bboxes_and_names_au.append(scored_bbox_and_name)
-    
-    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/horizontal_flip.jpg",
-                              image=image,
-                              scored_bboxes_and_names=scored_bboxes_and_names_au,
-                              class_id_to_name=class_id_to_name)
-
-def vertical_flip(data, image, scored_bboxes_and_names):
-    
     original_width, original_height = image.width, image.height
     
     image = image.transpose(method=Image.FLIP_TOP_BOTTOM)
@@ -90,6 +64,34 @@ def vertical_flip(data, image, scored_bboxes_and_names):
                             image=image,
                             scored_bboxes_and_names=scored_bboxes_and_names_au,
                             class_id_to_name=class_id_to_name)
+    
+
+def vertical_flip(data, image, scored_bboxes_and_names):
+    
+    original_width, original_height = image.width, image.height
+    
+    image = image.transpose(method=Image.FLIP_LEFT_RIGHT)
+    
+    scored_bboxes_and_names_au = []
+    for i in range(len(scored_bboxes_and_names)):
+        scored_bbox_and_name = scored_bboxes_and_names[i]
+        corners = scored_bbox_and_name[0: 4]
+        
+        corners = np.array([
+            corners[0],
+            original_width - 1 - corners[3],
+            corners[2],
+            original_width - 1 - corners[1]
+        ])
+        
+        scored_bbox_and_name[0: 4] = corners
+        
+        scored_bboxes_and_names_au.append(scored_bbox_and_name)
+    
+    visualize.draw_gt_detections(save_path="/home/stu7/prml23_project/augment_test/horizontal_flip.jpg",
+                              image=image,
+                              scored_bboxes_and_names=scored_bboxes_and_names_au,
+                              class_id_to_name=class_id_to_name)
 
 def hsv(data, image, scored_bboxes_and_names):
     # Generate random enhancement amplitude

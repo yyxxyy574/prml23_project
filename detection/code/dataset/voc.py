@@ -159,17 +159,17 @@ class VOCDataset:
             if augment_params.augment:
                 if augment_params.horizontal_flip:
                     corners = np.array([
-                    corners[0],
-                    original_width - 1 - corners[3],
-                    corners[2],
-                    original_width - 1 - corners[1]
-                    ])
-                if augment_params.vertical_flip:
-                    corners = np.array([
                         original_height - 1 -corners[2],
                         corners[1],
                         original_height - 1 -corners[0],
                         corners[3]
+                    ])
+                if augment_params.vertical_flip:
+                    corners = np.array([
+                        corners[0],
+                        original_width - 1 - corners[3],
+                        corners[2],
+                        original_width - 1 - corners[1]
                     ])
                     
             scaled_bbox = Bbox(

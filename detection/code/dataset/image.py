@@ -90,9 +90,9 @@ def load_image(path, preprocessing, augmenting, min_dimension_pixels=None):
     # Augementing with give parameters
     if augmenting.augment:
         if augmenting.horizontal_flip:
-            image = image.transpose(method=Image.FLIP_LEFT_RIGHT)
-        if augmenting.vertical_flip:
             image = image.transpose(method=Image.FLIP_TOP_BOTTOM)
+        if augmenting.vertical_flip:
+            image = image.transpose(method=Image.FLIP_LEFT_RIGHT)
         if augmenting.hsv:
             # Generate random enhancement amplitude
             r = np.random.uniform(-1, 1, 3) * [0.5, 0.5, 0.5] + 1
